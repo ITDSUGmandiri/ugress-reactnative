@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "740532179908",
+    "project_id": "itbsug-pushnotif",
+    "storage_bucket": "itbsug-pushnotif.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740532179908:android:8e40aec6fcb0ab0af90a91",
+        "android_client_info": {
+          "package_name": "com.cfm_ug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAryYvivTQnR1i2P5JHVhpKMqrGVYuaBCs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

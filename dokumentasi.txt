@@ -1,0 +1,41 @@
+npx react-native@latest init cfm_ug
+
+// navigasi
+
+npm install @react-navigation/native
+npm install react-native-screens react-native-safe-area-context
+npm install @react-navigation/native-stack
+npm install @react-navigation/bottom-tabs
+
+edit file android/app/src/main/java/<your package name>/MainActivity.java
+
+tambahkan :
+import android.os.Bundle;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+  super.onCreate(null);
+}
+
+// any storage
+
+npm i @react-native-async-storage/async-storage
+// datatable
+npm install react-native-paper
+//fontaweshome
+// icon font aweshome
+npm i --save @fortawesome/react-native-fontawesome @fortawesome/fontawesome-svg-core react-native-svg // untuk icon
+npm i --save @fortawesome/free-solid-svg-icons
+
+//
+
+// lokasi
+npm i react-native-get-location
+
+// camera
+npm i react-native-camera-kit
+npm i react-native-image-crop-picker
+
+//select
+npm i @react-native-picker/picker
+
+
