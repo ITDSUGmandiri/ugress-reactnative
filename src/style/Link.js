@@ -1,39 +1,39 @@
-const Link_login = 'http://192.168.3.28/api_cfm/api/Auth/Login';
-const Cek_profile = 'http://192.168.3.28/api_cfm/api/Auth/Profile';
-const Foto_profile = 'http://192.168.3.28/api_cfm/api/Auth/Foto_profile';
-const Link_Permission = 'http://192.168.3.28/api_cfm/api/Auth/Permission';
-const Link_ganti_password = 'http://192.168.3.28/api_cfm/api/Auth/Change_pass';
-const User_signature = 'http://192.168.3.28/api_cfm/api/Auth/Signature';
+const Link_login = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Auth/Login';
+const Cek_profile = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Auth/Profile';
+const Foto_profile = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Auth/Foto_profile';
+const Link_Permission = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Auth/Permission';
+const Link_ganti_password = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Auth/Change_pass';
+const User_signature = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Auth/Signature';
 
-const Unit_cek = 'http://192.168.3.28/api_cfm/api/Penghuni/Unit_cek';
-const Helpdesk_add = 'http://192.168.3.28/api_cfm/api/Penghuni/Helpdesk_add';
-const History_tiket = 'http://192.168.3.28/api_cfm/api/Penghuni/History_tiket';
-const List_unit_hunian = 'http://192.168.3.28/api_cfm/api/Penghuni/List_unit';
-const Detail_tiket = 'http://192.168.3.28/api_cfm/api/Penghuni/Detail_tiket';
-const Detail_unit_link = 'http://192.168.3.28/api_cfm/api/Penghuni/Detail_unit';
+const Unit_cek = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Penghuni/Unit_cek';
+const Helpdesk_add = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Penghuni/Helpdesk_add';
+const History_tiket = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Penghuni/History_tiket';
+const List_unit_hunian = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Penghuni/List_unit';
+const Detail_tiket = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Penghuni/Detail_tiket';
+const Detail_unit_link = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Penghuni/Detail_unit';
 
-const List_incident_teknisi = 'http://192.168.3.28/api_cfm/api/Teknisi/List_incident';
-const List_history_teknisi = 'http://192.168.3.28/api_cfm/api/Teknisi/List_history';
+const List_incident_teknisi = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Teknisi/List_incident';
+const List_history_teknisi = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Teknisi/List_history';
 
-const Link_pengecekan = 'http://192.168.3.28/api_cfm/api/Teknisi/Pengecekan';
-const Link_progres = 'http://192.168.3.28/api_cfm/api/Teknisi/Progres';
-const Link_pending = 'http://192.168.3.28/api_cfm/api/Teknisi/Pending';
-const Link_complete = 'http://192.168.3.28/api_cfm/api/Teknisi/finish';
-const Link_tambah_foto = 'http://192.168.3.28/api_cfm/api/Teknisi/Tambah_foto';
-const Link_ttd = 'http://192.168.3.28/api_cfm/api/Teknisi/Signature';
-const Link_list_biaya = 'http://192.168.3.28/api_cfm/api/Teknisi/List_biaya';
-const Link_biaya_perbaikan = 'http://192.168.3.28/api_cfm/api/Teknisi/Biaya_perbaikan';
-const Link_delete_list_biaya = 'http://192.168.3.28/api_cfm/api/Teknisi/delete_list_biaya';
+const Link_pengecekan = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Teknisi/Pengecekan';
+const Link_progres = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Teknisi/Progres';
+const Link_pending = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Teknisi/Pending';
+const Link_complete = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Teknisi/finish';
+const Link_tambah_foto = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Teknisi/Tambah_foto';
+const Link_ttd = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Teknisi/Signature';
+const Link_list_biaya = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Teknisi/List_biaya';
+const Link_biaya_perbaikan = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Teknisi/Biaya_perbaikan';
+const Link_delete_list_biaya = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Teknisi/delete_list_biaya';
 
-const List_incident_leader_pending = 'http://192.168.3.28/api_cfm/api/Tl/List_pending';
-const List_incident_leader = 'http://192.168.3.28/api_cfm/api/Tl/List_incident';
-const List_history_leader = 'http://192.168.3.28/api_cfm/api/Tl/List_history';
-const List_kategory_leader = 'http://192.168.3.28/api_cfm/api/Tl/Teknisi';
-const Leader_assign = 'http://192.168.3.28/api_cfm/api/Tl/Progres';
+const List_incident_leader_pending = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Tl/List_pending';
+const List_incident_leader = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Tl/List_incident';
+const List_history_leader = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Tl/List_history';
+const List_kategory_leader = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Tl/Teknisi';
+const Leader_assign = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Tl/Progres';
 
-const List_tipe_insiden = 'http://192.168.3.28/api_cfm/api/Tl/List_tipe_insiden';
+const List_tipe_insiden = 'https://itbs.slmugmandiri.co.id/ug-api-mytms/api/Tl/List_tipe_insiden';
 
-const host = "http://192.168.3.28/"
+const host = "https://itbs.slmugmandiri.co.id/"
 const token = 'itbs_v1';
 
 export {
