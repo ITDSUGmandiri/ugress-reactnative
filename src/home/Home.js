@@ -201,8 +201,6 @@ const Home = ({navigation}) => {
     <View
     style={{
       flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
        backgroundColor: '#10104F',
     }}
     >
@@ -338,7 +336,7 @@ const styles = StyleSheet.create({
   featureBox: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '30%',
+    width: '28%',
     aspectRatio: 1,
     backgroundColor: 'white',
     borderRadius: 10,
@@ -346,20 +344,19 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   Container: {
-    width:'100%',
     elevation: 8,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
     fontFamily: 'sans-serif-light',
     fontWeight: 'bold',
-    paddingBottom:10,
+    paddingBottom:5,
     color: 'black',
   },
   logo: {
     alignItems: 'center',
-    height: 65,
-    width: 260,
+    height: 40,
+    width: 200,
   },
   cont1: {
     fontFamily: 'sans-serif',
