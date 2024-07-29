@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image, TextInput, FlatList } from 'react-native'
+import Logo from '../../Img/logofeat.png';
+import moment from 'moment';
 
 export default RoomChat = () => {
   const data = [
@@ -8,14 +10,17 @@ export default RoomChat = () => {
     { id: 3, date: '9:50 am', type: 'in', message: 'Lorem ipsum dolor sit a met' },
     { id: 4, date: '9:50 am', type: 'in', message: 'Lorem ipsum dolor sit a met' },
     { id: 5, date: '9:50 am', type: 'out', message: 'Lorem ipsum dolor sit a met' },
-    { id: 6, date: '9:50 am', type: 'out', message: 'Lorem ipsum dolor sit a met' },
-    { id: 7, date: '9:50 am', type: 'in', message: 'Lorem ipsum dolor sit a met' },
-    { id: 8, date: '9:50 am', type: 'in', message: 'Lorem ipsum dolor sit a met' },
-    { id: 9, date: '9:50 am', type: 'in', message: 'Lorem ipsum dolor sit a met' },
   ]
 
   const [messages, setMessages] = useState(data)
   const [newMsg, setNewMsg] = useState()
+  const [currentTime, setCurrentTime] = useState('');
+
+  useEffect(() => {
+    const time = moment(new Date()).format('LLLL');
+    setCurrentTime(time);
+
+  }, [currentTime]);
 
   const renderDate = date => {
     return <Text style={styles.time}>{date}</Text>
@@ -23,6 +28,12 @@ export default RoomChat = () => {
 
   return (
     <View style={styles.container}>
+       <View style={styles.tophead}>
+          <Image source={Logo} style={styles.logo}></Image>
+
+          <Text>{currentTime}</Text>
+         
+        </View>
       <FlatList
         style={styles.list}
         data={messages}
@@ -35,24 +46,27 @@ export default RoomChat = () => {
           let itemStyle = inMessage ? styles.itemIn : styles.itemOut
           return (
             <View style={[styles.item, itemStyle]}>
-              {!inMessage && renderDate(item.date)}
+              
               
               {inMessage ? 
 
               <>
               <Image source={{ uri: item.image }} style={styles.userPic} />
               <View style={[styles.balloon]}>
-                <Text>{item.message}</Text>
+                
+                <Text selectable>{inMessage && renderDate(item.date)}{'\n'}{item.message}</Text>
+                
               </View>
+              
               </>
               :
               <>
               <View style={[styles.balloon]}>
-                <Text>{item.message}</Text>
+                <Text selectable>{renderDate(item.date)}{'\n'}{item.message}</Text>
               </View>
                <Image source={{ uri: item.image }} style={styles.userPic} /></>
                }
-              {inMessage && renderDate(item.date)}
+              {/* {inMessage && renderDate(item.date)} */}
             </View>
           )
         }}
@@ -79,8 +93,25 @@ export default RoomChat = () => {
 }
 
 const styles = StyleSheet.create({
+  logo: {
+    alignItems: 'center',
+    height: 40,
+    width: 200,
+  },
+  tophead: {
+    elevation: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    fontFamily: 'sans-serif-light',
+    fontWeight: 'bold',
+    paddingBottom:5,
+    color: 'black',
+  },
   container: {
-    flex: 1,
+    
+    backgroundColor: '#000060',
+    flex: 999,
   },
   userPic: {
     height: 40,
@@ -90,33 +121,32 @@ const styles = StyleSheet.create({
     backgroundColor: '#f8f8f8',
   },
   list: {
-    paddingHorizontal: 17,
+    paddingHorizontal: 10,
   },
   footer: {
     flexDirection: 'row',
-    height: 60,
+    height: 45,
     backgroundColor: '#eeeeee',
     paddingHorizontal: 10,
     padding: 5,
   },
   btnSend: {
-    backgroundColor: '#00BFFF',
-    width: 40,
+    backgroundColor: '#000060',
+    width: 45,
     height: 40,
-    borderRadius: 360,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
   iconSend: {
-    width: 30,
-    height: 30,
+    width: 20,
+    height: 20,
     alignSelf: 'center',
   },
   inputContainer: {
     borderBottomColor: '#F5FCFF',
     backgroundColor: '#FFFFFF',
-    borderRadius: 30,
-    borderBottomWidth: 1,
+    borderRadius: 10,
     height: 40,
     flexDirection: 'row',
     alignItems: 'center',
@@ -130,9 +160,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   balloon: {
+    fontSize:12,
     maxWidth: 250,
-    padding: 15,
-    borderRadius: 20,
+    padding: 8,
+    borderRadius: 10,
   },
   itemIn: {
     alignSelf: 'flex-start',
@@ -143,15 +174,15 @@ const styles = StyleSheet.create({
   time: {
     alignSelf: 'flex-end',
     margin: 15,
-    fontSize: 12,
+    fontSize: 10,
     color: '#808080',
   },
   item: {
-    marginVertical: 14,
+    marginVertical: 10,
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#E0FFFF',
-    borderRadius: 300,
+    backgroundColor: '#fff',
+    borderRadius: 10,
     padding: 5,
   },
 })
