@@ -39,6 +39,7 @@ import 'moment/locale/id';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import {DataTable} from 'react-native-paper';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 const lebar_tombol = '80%';
 
 //const wd = '100%';
@@ -197,14 +198,11 @@ const Home = ({navigation}) => {
   };
 
   return (
-   
     <View
-    style={{
-      flex: 1,
-       backgroundColor: '#10104F',
-    }}
-    >
-         
+      style={{
+        flex: 1,
+        backgroundColor: '#10104F',
+      }}>
       <Modal animationType="none" visible={loading}>
         <View
           style={{
@@ -218,98 +216,93 @@ const Home = ({navigation}) => {
       </Modal>
 
       <View style={styles.Container}>
-          <Image source={Logo} style={styles.logo}></Image>
+        <Image source={Logo} style={styles.logo}></Image>
 
-          <Text>{currentTime}</Text>
-         
-        </View>
+        <Text>{currentTime}</Text>
+      </View>
 
       <ScrollView
-   
         contentContainerStyle={styles.scrollView}
         refreshControl={
           <RefreshControl refreshing={loading} onRefresh={ascdata} />
         }>
+        <Text
+          style={{
+            top: 10,
+            textAlign: 'center',
+            color: 'white',
+            fontSize: 14,
+            fontWeight: 'bold',
+          }}>
+          Selamat datang {usname}
+        </Text>
 
-<Text
-            style={{
-              top:10,
-              textAlign:'center',
-              color:'white',
-              fontSize: 14,
-              fontWeight: 'bold',
-            }}>
-            Selamat datang {usname}
-          </Text>
-        
-        
-          {type == '99' ? (
-            <View style={styles.featuresContainer}>
-              <PressableFeatureBox
-                name="Helpdesk"
-                icon="users-cog"
-                onPress={() => Pindah_halaman('Helpdesk')}
-              />
-              <PressableFeatureBox
-                name="Histori"
-                icon="history"
-                onPress={() => Pindah_halaman('History_tiket')}
-              />
-              <PressableFeatureBox
-                name="Data Unit"
-                icon="list-alt"
-                onPress={() => Pindah_halaman('List_unit')}
-              />
-            </View>
-          ) : type == '7' ? (
-            <View style={styles.featuresContainer}>
-              <PressableFeatureBox
-                name="Insiden"
-                icon="wrench"
-                onPress={() => Pindah_halaman('Leader_list_incident')}
-              />
-              <PressableFeatureBox
-                name="Pending"
-                icon="history"
-                onPress={() => Pindah_halaman('Leader_pending_incident')}
-              />
-              <PressableFeatureBox
-                name="Histori"
-                icon="list"
-                onPress={() => Pindah_halaman('Leader_history_incident')}
-              />
-             
-            </View>
-          ) : type == '6' ? (
-            <View style={styles.featuresContainer}>
-              <PressableFeatureBox
-                name="Insiden"
-                icon="wrench"
-                onPress={() => Pindah_halaman('Teknisi_incident')}
-              />
-              <PressableFeatureBox
-                name="Pending"
-                icon="history"
-                onPress={() => Pindah_halaman('Teknisi_history')}
-              />
+        {type == '99' ? (
+          <View style={styles.featuresContainer}>
+            <PressableFeatureBox
+              name="Helpdesk"
+              icon="users-cog"
+              onPress={() => Pindah_halaman('Helpdesk')}
+            />
+            <PressableFeatureBox
+              name="Histori"
+              icon="history"
+              onPress={() => Pindah_halaman('History_tiket')}
+            />
+            <PressableFeatureBox
+              name="Data Unit"
+              icon="list-alt"
+              onPress={() => Pindah_halaman('List_unit')}
+            />
+          </View>
+        ) : type == '7' ? (
+          <View style={styles.featuresContainer}>
+            <PressableFeatureBox
+              name="Insiden"
+              icon="wrench"
+              onPress={() => Pindah_halaman('Leader_list_incident')}
+            />
+            <PressableFeatureBox
+              name="Pending"
+              icon="history"
+              onPress={() => Pindah_halaman('Leader_pending_incident')}
+            />
+            <PressableFeatureBox
+              name="Histori"
+              icon="list"
+              onPress={() => Pindah_halaman('Leader_history_incident')}
+            />
+            
+          </View>
+          
+        ) : type == '6' ? (
+          <View style={styles.featuresContainer}>
+            <PressableFeatureBox
+              name="Insiden"
+              icon="wrench"
+              onPress={() => Pindah_halaman('Teknisi_incident')}
+            />
+            <PressableFeatureBox
+              name="Pending"
+              icon="history"
+              onPress={() => Pindah_halaman('Teknisi_history')}
+            />
 
-              <PressableFeatureBox
-                name=""
-                icon="list"
-                onPress={() => Pindah_halaman('Leader_history_incident')}
-              />
-             
+            <PressableFeatureBox
+              name=""
+              icon="list"
+              onPress={() => Pindah_halaman('Leader_history_incident')}
+            />
+          </View>
+        ) : (
+          <View style={styles.Card}>
+            <View style={styles.cont2}>
+              <Text style={{fontSize: 12, color: 'red', fontWeight: 'normal'}}>
+                UG Mandiri
+              </Text>
             </View>
-          ) : (
-            <View style={styles.Card}>
-              <View style={styles.cont2}>
-                <Text
-                  style={{fontSize: 12, color: 'red', fontWeight: 'normal'}}>
-                  UG Mandiri
-                </Text>
-              </View>
-            </View>
-          )}
+          </View>
+        )}
 
         <View style={styles.Card}>
           <View style={styles.cont2}>
@@ -327,11 +320,13 @@ const Home = ({navigation}) => {
 
 const styles = StyleSheet.create({
   featuresContainer: {
-    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    marginTop: 10,
+    top:20,
+    paddingTop:10,
+    borderTopLeftRadius:40,
+    backgroundColor: Colors.white
   },
   featureBox: {
     alignItems: 'center',
@@ -344,13 +339,13 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   Container: {
-    elevation: 8,
+    borderBottomLeftRadius:40,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
     fontFamily: 'sans-serif-light',
     fontWeight: 'bold',
-    paddingBottom:5,
+    paddingBottom: 5,
     color: 'black',
   },
   logo: {

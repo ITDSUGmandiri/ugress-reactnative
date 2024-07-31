@@ -13,6 +13,7 @@ import { passwordValidator } from '../../assets/helper/passwordValidator'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import messaging from '@react-native-firebase/messaging';
+import { Colors } from 'react-native/Libraries/NewAppScreen'
 
 export default function LoginScreen({ navigation }) {
   const [notif, setNotif] = useState('');
@@ -138,7 +139,7 @@ export default function LoginScreen({ navigation }) {
         </Modal>
       <Logo /> 
       <Header>Selamat datang...</Header>
-      <Text style={{ margin: 5, fontSize: 12, color: 'red', fontWeight: 'normal' }}>{notif}</Text>
+      <Text style={{ margin: 2, fontSize: 12, color: 'red', fontWeight: 'normal' }}>{notif}</Text>
       <TextInput
         label="Username"
         value={username.value}
@@ -166,27 +167,24 @@ export default function LoginScreen({ navigation }) {
       <Button mode="contained" onPress={onLoginPressed}>
         Login
       </Button>
-      <View style={styles.row}>
-      <Text style={{  fontSize: 12, fontWeight: 'bold', textAlign: 'center' }} >powered by ITBS UG MANDIRI</Text>
-          
-      </View>
+    
+     
     </Background>
+    
   )
 }
 
 const styles = StyleSheet.create({
   forgotPassword: {
+    top:8,
     width: '100%',
     alignItems: 'flex-end',
-    marginBottom: 24,
+    marginBottom:8,
   },
-  row: {
-    marginTop:50,
-    justifyContent: 'flex-end',
-  },
+
   forgot: {
     fontSize: 13,
-    color: theme.colors.secondary,
+    color: Colors.white,
   },
   link: {
     fontWeight: 'bold',
