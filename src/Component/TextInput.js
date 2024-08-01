@@ -8,6 +8,7 @@ export default function TextInput({ errorText, description, ...props }) {
   return (
     <View style={styles.container}>
       <Input
+      editable={false} selectTextOnFocus={false}
         style={styles.input}
         selectionColor={theme.colors.primary}
         underlineColor="transparent"
@@ -18,6 +19,8 @@ export default function TextInput({ errorText, description, ...props }) {
         <Text style={styles.description}>{description}</Text>
       ) : null}
       {errorText ? <Text style={styles.error}>{errorText}</Text> : null}
+
+      
     </View>
   )
 }
@@ -28,13 +31,14 @@ const styles = StyleSheet.create({
     marginVertical: 0,
   },
   input: {
-    height:50,
+    height:55,
+    marginBottom:10,
     backgroundColor: theme.colors.surface,
   },
   description: {
     fontSize: 13,
     color: theme.colors.surface,
-    paddingTop: 8,
+    // paddingTop: 8,
   },
   error: {
     fontSize: 13,
