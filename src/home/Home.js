@@ -309,6 +309,11 @@ const Home = ({ navigation }) => {
               icon="history"
               onPress={() => Pindah_halaman('Teknisi_history')}
             />
+<PressableFeatureBox
+                name="Buat Tiket"
+                icon="plus"
+                onPress={() => Pindah_halaman('AddNewTicket')}
+              />
 
           </View>
         ) : (
@@ -338,6 +343,8 @@ const Home = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   featuresContainer: {
+    paddingLeft: 10,
+    paddingEnd:10,
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
