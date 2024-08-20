@@ -280,6 +280,11 @@ const Home = ({navigation}) => {
                 icon="list"
                 onPress={() => Pindah_halaman('Leader_history_incident')}
               />
+              <PressableFeatureBox
+                name="Buat Tiket"
+                icon="plus"
+                onPress={() => Pindah_halaman('AddNewTicket')}
+              />
              
             </View>
           ) : type == '6' ? (
@@ -332,7 +337,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     marginTop: 10,
   },
   featureBox: {

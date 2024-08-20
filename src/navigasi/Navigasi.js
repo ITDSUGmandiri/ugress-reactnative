@@ -24,7 +24,7 @@ import {
   List_unit, Detail_unit_data,
   Detail_helpdesk,
   Teknisi_history, Teknisi_incident, Teknisi_pengecekan, Teknisi_progres, Detail_tiket_update, Teknisi_pending, Teknisi_finish, Teknisi_tambah_foto, Ttd, Teknisi_input_biaya,
-  Leader_list_incident, Leader_history_incident, Leader_detail_incident, Leader_pending_incident
+  Leader_list_incident, Leader_history_incident, Leader_detail_incident, Leader_pending_incident,AddNewTicket
 } from '../pages/Pages';
 
 import logout from '../.././Img/logout.png';
@@ -252,6 +252,11 @@ function App() {
         <Stack.Screen name="Leader_pending_incident" component={Leader_pending_incident} options={{
           headerShown: true,
           title: "Pending incident leader"
+        }} />
+
+        <Stack.Screen name="AddNewTicket" component={AddNewTicket} options={{
+          headerShown: true,
+          title: "AddNewTicket"
         }} />
 
         <Stack.Screen name="Ttd" component={Ttd} options={{

@@ -26,6 +26,7 @@ import Teknisi_input_biaya from '../Teknisi/Input_value';
 import Leader_list_incident from '../Tl/List_incident';
 import Leader_pending_incident from '../Tl/List_pending';
 import Leader_history_incident from '../Tl/List_history';
+import AddNewTicket from '../Tl/NewTiket';
 import Leader_detail_incident from '../Tl/Detail';
 
 import Ttd from '../Teknisi/Ttd';
@@ -34,7 +35,7 @@ export
 Splash_screen,Login,Logout,Home,Chat,Profile,User_signature,
 //penghuni
 Helpdesk,Detail_helpdesk,History_tiket,List_unit,Detail_unit_data,Teknisi_history,Teknisi_incident,Teknisi_pengecekan,Teknisi_progres
-,Detail_tiket_update,Teknisi_pending,Teknisi_finish,Teknisi_tambah_foto,Ttd,Teknisi_input_biaya,Leader_list_incident,Leader_history_incident,Leader_detail_incident,Leader_pending_incident
+,Detail_tiket_update,Teknisi_pending,Teknisi_finish,Teknisi_tambah_foto,Ttd,Teknisi_input_biaya,Leader_list_incident,Leader_history_incident,Leader_detail_incident,Leader_pending_incident,AddNewTicket
 //teknisi
 
 };
