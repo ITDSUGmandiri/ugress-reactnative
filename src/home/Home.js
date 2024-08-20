@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 //import Geolocation from '@react-native-community/geolocation';
 import {
   RefreshControl,
@@ -15,34 +15,34 @@ import {
   Linking,
   ImageBackground,
 } from 'react-native';
-import {Link_Permission, Link_outstanding, host, token} from '../style/Link';
+import { Link_Permission, Link_outstanding, host, token } from '../style/Link';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 //import GetLocation from 'react-native-get-location';
-import {Bg_, Cl_, Bg1_, Cl1_, Bg2_, Cl2_, Cl3_} from '../style/Style_assets';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faList} from '@fortawesome/free-solid-svg-icons/faList';
-import {faSort} from '@fortawesome/free-solid-svg-icons/faSort';
+import { Bg_, Cl_, Bg1_, Cl1_, Bg2_, Cl2_, Cl3_ } from '../style/Style_assets';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faList } from '@fortawesome/free-solid-svg-icons/faList';
+import { faSort } from '@fortawesome/free-solid-svg-icons/faSort';
 import Logo from '../../Img/logofeat.png';
-import {faHeadset} from '@fortawesome/free-solid-svg-icons/faHeadset';
-import {faArrowRightArrowLeft} from '@fortawesome/free-solid-svg-icons/faArrowRightArrowLeft';
-import {faTruckPickup} from '@fortawesome/free-solid-svg-icons/faTruckPickup';
-import {faListCheck} from '@fortawesome/free-solid-svg-icons/faListCheck';
-import {faMapPin} from '@fortawesome/free-solid-svg-icons/faMapPin';
-import {faKeyboard} from '@fortawesome/free-solid-svg-icons/faKeyboard';
-import {faKey} from '@fortawesome/free-solid-svg-icons/faKey';
-import {faMoneyBillTransfer} from '@fortawesome/free-solid-svg-icons/faMoneyBillTransfer';
-import {faExchange} from '@fortawesome/free-solid-svg-icons/faExchange';
+import { faHeadset } from '@fortawesome/free-solid-svg-icons/faHeadset';
+import { faArrowRightArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowRightArrowLeft';
+import { faTruckPickup } from '@fortawesome/free-solid-svg-icons/faTruckPickup';
+import { faListCheck } from '@fortawesome/free-solid-svg-icons/faListCheck';
+import { faMapPin } from '@fortawesome/free-solid-svg-icons/faMapPin';
+import { faKeyboard } from '@fortawesome/free-solid-svg-icons/faKeyboard';
+import { faKey } from '@fortawesome/free-solid-svg-icons/faKey';
+import { faMoneyBillTransfer } from '@fortawesome/free-solid-svg-icons/faMoneyBillTransfer';
+import { faExchange } from '@fortawesome/free-solid-svg-icons/faExchange';
 import pp from '../.././Img/profile.png';
 import Qr from '../.././Img/qr.png';
 import moment from 'moment';
 import 'moment/locale/id';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import {DataTable} from 'react-native-paper';
+import { DataTable } from 'react-native-paper';
 const lebar_tombol = '80%';
 
 //const wd = '100%';
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
   const itbs = token;
   const [loading, isLoading] = useState(true);
   const [usname, setUname] = useState('');
@@ -51,7 +51,7 @@ const Home = ({navigation}) => {
   const [notif, setNotif] = useState('');
   const [data, setdata] = useState([]);
   const [data_value, setdatavalue] = useState([]);
-  const [location, setLocation] = useState({latitude: null, longitude: null});
+  const [location, setLocation] = useState({ latitude: null, longitude: null });
   const imageURL = host + 'foto_user/' + uid + '.png?time=' + new Date();
   const [currentTime, setCurrentTime] = useState('');
 
@@ -68,7 +68,7 @@ const Home = ({navigation}) => {
     return unsubscribe;
   }, [navigation]);
 
-  const PressableFeatureBox = ({name, icon, onPress}) => (
+  const PressableFeatureBox = ({ name, icon, onPress }) => (
     <TouchableOpacity
       onPress={onPress}
       disabled={name == '' ? true : false}
@@ -116,6 +116,17 @@ const Home = ({navigation}) => {
       );
     }
   */
+
+    /**
+     * 
+     
+    <PressableFeatureBox
+              name=""
+              icon="list"
+              onPress={() => Pindah_halaman('Leader_history_incident')}
+    />
+
+     */
 
   const Cek = async (typ, result, tk) => {
     fetch(Link_Permission, {
@@ -197,16 +208,14 @@ const Home = ({navigation}) => {
   };
 
   return (
-   
+
     <View
-    style={{
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-       backgroundColor: '#10104F',
-    }}
+      style={{
+        flex: 1,
+        backgroundColor: '#10104F',
+      }}
     >
-         
+
       <Modal animationType="none" visible={loading}>
         <View
           style={{
@@ -220,107 +229,102 @@ const Home = ({navigation}) => {
       </Modal>
 
       <View style={styles.Container}>
-          <Image source={Logo} style={styles.logo}></Image>
+        <Image source={Logo} style={styles.logo}></Image>
 
-          <Text>{currentTime}</Text>
-         
-        </View>
+        <Text>{currentTime}</Text>
+
+      </View>
 
       <ScrollView
-   
+
         contentContainerStyle={styles.scrollView}
         refreshControl={
           <RefreshControl refreshing={loading} onRefresh={ascdata} />
         }>
 
-<Text
-            style={{
-              top:10,
-              textAlign:'center',
-              color:'white',
-              fontSize: 14,
-              fontWeight: 'bold',
-            }}>
-            Selamat datang {usname}
-          </Text>
-        
-        
-          {type == '99' ? (
-            <View style={styles.featuresContainer}>
-              <PressableFeatureBox
-                name="Helpdesk"
-                icon="users-cog"
-                onPress={() => Pindah_halaman('Helpdesk')}
-              />
-              <PressableFeatureBox
-                name="Histori"
-                icon="history"
-                onPress={() => Pindah_halaman('History_tiket')}
-              />
-              <PressableFeatureBox
-                name="Data Unit"
-                icon="list-alt"
-                onPress={() => Pindah_halaman('List_unit')}
-              />
-            </View>
-          ) : type == '7' ? (
-            <View style={styles.featuresContainer}>
-              <PressableFeatureBox
-                name="Insiden"
-                icon="wrench"
-                onPress={() => Pindah_halaman('Leader_list_incident')}
-              />
-              <PressableFeatureBox
-                name="Pending"
-                icon="history"
-                onPress={() => Pindah_halaman('Leader_pending_incident')}
-              />
-              <PressableFeatureBox
-                name="Histori"
-                icon="list"
-                onPress={() => Pindah_halaman('Leader_history_incident')}
-              />
-              <PressableFeatureBox
+        <Text
+          style={{
+            top: 10,
+            textAlign: 'center',
+            color: 'white',
+            fontSize: 14,
+            fontWeight: 'bold',
+          }}>
+          Selamat datang {usname}
+        </Text>
+
+
+        {type == '99' ? (
+          <View style={styles.featuresContainer}>
+            <PressableFeatureBox
+              name="Helpdesk"
+              icon="users-cog"
+              onPress={() => Pindah_halaman('Helpdesk')}
+            />
+            <PressableFeatureBox
+              name="Histori"
+              icon="history"
+              onPress={() => Pindah_halaman('History_tiket')}
+            />
+            <PressableFeatureBox
+              name="Data Unit"
+              icon="list-alt"
+              onPress={() => Pindah_halaman('List_unit')}
+            />
+          </View>
+        ) : type == '7' ? (
+          <View style={styles.featuresContainer}>
+            <PressableFeatureBox
+              name="Insiden"
+              icon="wrench"
+              onPress={() => Pindah_halaman('Leader_list_incident')}
+            />
+            <PressableFeatureBox
+              name="Pending"
+              icon="history"
+              onPress={() => Pindah_halaman('Leader_pending_incident')}
+            />
+            <PressableFeatureBox
+              name="Histori"
+              icon="list"
+              onPress={() => Pindah_halaman('Leader_history_incident')}
+            />
+             <PressableFeatureBox
                 name="Buat Tiket"
                 icon="plus"
                 onPress={() => Pindah_halaman('AddNewTicket')}
               />
-             
-            </View>
-          ) : type == '6' ? (
-            <View style={styles.featuresContainer}>
-              <PressableFeatureBox
-                name="Insiden"
-                icon="wrench"
-                onPress={() => Pindah_halaman('Teknisi_incident')}
-              />
-              <PressableFeatureBox
-                name="Pending"
-                icon="history"
-                onPress={() => Pindah_halaman('Teknisi_history')}
-              />
 
-              <PressableFeatureBox
-                name=""
-                icon="list"
-                onPress={() => Pindah_halaman('Leader_history_incident')}
-              />
-             
+          </View>
+        ) : type == '6' ? (
+          <View style={styles.featuresContainer}>
+            <PressableFeatureBox
+              name="Insiden"
+              icon="wrench"
+              onPress={() => Pindah_halaman('Teknisi_incident')}
+            />
+
+            <PressableFeatureBox
+              name="History"
+              icon="history"
+              onPress={() => Pindah_halaman('Teknisi_history')}
+            />
+
+          </View>
+        ) : (
+          <View style={styles.Card}>
+            <View style={styles.cont2}>
+              <Text
+                style={{ fontSize: 12, color: 'red', fontWeight: 'normal' }}>
+                UG Mandiri
+              </Text>
             </View>
-          ) : (
-            <View style={styles.Card}>
-              <View style={styles.cont2}>
-                <Text
-                  style={{fontSize: 12, color: 'red', fontWeight: 'normal'}}>
-                  UG Mandiri
-                </Text>
-              </View>
-            </View>
-          )}
+          </View>
+        )}
 
         <View style={styles.Card}>
           <View style={styles.cont2}>
-            <Text style={{fontSize: 12, color: 'red', fontWeight: 'normal'}}>
+            <Text style={{ fontSize: 12, color: 'red', fontWeight: 'normal' }}>
               {notif}
             </Text>
           </View>
@@ -343,7 +347,7 @@ const styles = StyleSheet.create({
   featureBox: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: '30%',
+    width: '28%',
     aspectRatio: 1,
     backgroundColor: 'white',
     borderRadius: 10,
@@ -351,20 +355,19 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   Container: {
-    width:'100%',
     elevation: 8,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
     fontFamily: 'sans-serif-light',
     fontWeight: 'bold',
-    paddingBottom:10,
+    paddingBottom: 5,
     color: 'black',
   },
   logo: {
     alignItems: 'center',
-    height: 65,
-    width: 260,
+    height: 40,
+    width: 200,
   },
   cont1: {
     fontFamily: 'sans-serif',
