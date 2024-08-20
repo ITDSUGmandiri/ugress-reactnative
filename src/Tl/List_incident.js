@@ -342,7 +342,7 @@ const List_job = ({ navigation }) => {
               style={{ width: lebar, left: 10, fontSize: 24, color: '#56c0e0', fontWeight: 'bold', marginBottom: 2 }}>{last_status}
             </Text>
             <Text numberOfLines={1}
-              style={{ width: lebar, fontSize: 16, color: Cl3_, fontWeight: 'bold', marginBottom: 2 }}>Area : {nama_lokasi}
+              style={{ width: lebar, fontSize: 16, color: Cl3_, fontWeight: 'bold', marginBottom: 2 }}>Lokasi : {nama_lokasi}
             </Text>
             <Text numberOfLines={1}
               style={{ width: lebar, fontSize: 16, color: Cl3_, fontWeight: 'bold', marginBottom: 2 }}>Unit : {blok}. {no_unit}
