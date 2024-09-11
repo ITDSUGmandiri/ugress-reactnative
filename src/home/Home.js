@@ -22,7 +22,7 @@ import { Bg_, Cl_, Bg1_, Cl1_, Bg2_, Cl2_, Cl3_ } from '../style/Style_assets';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons/faList';
 import { faSort } from '@fortawesome/free-solid-svg-icons/faSort';
-import Logo from '../../Img/logofeat.png';
+import Logo from '../../Img/icon_topbar.png';
 import { faHeadset } from '@fortawesome/free-solid-svg-icons/faHeadset';
 import { faArrowRightArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowRightArrowLeft';
 import { faTruckPickup } from '@fortawesome/free-solid-svg-icons/faTruckPickup';
@@ -56,7 +56,7 @@ const Home = ({ navigation }) => {
   const [currentTime, setCurrentTime] = useState('');
 
   useEffect(() => {
-    const time = moment(new Date()).format('LLLL');
+    const time = moment(new Date()).format('L');
     setCurrentTime(time);
 
     const unsubscribe = navigation.addListener('focus', () => {
@@ -230,9 +230,7 @@ const Home = ({ navigation }) => {
 
       <View style={styles.Container}>
         <Image source={Logo} style={styles.logo}></Image>
-
-        <Text>{currentTime}</Text>
-
+        <Text style={{  textAlign:'left', fontWeight:'bold' }}>{moment().format('dddd')}{"\n"}{currentTime}{"\n"}{moment().format('h:mm:ss')}</Text>
       </View>
 
       <ScrollView
@@ -362,19 +360,18 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   Container: {
-    elevation: 8,
     justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#fff',
     fontFamily: 'sans-serif-light',
     fontWeight: 'bold',
-    paddingBottom: 5,
+    fontStyle: 'italic',
     color: 'black',
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   logo: {
-    alignItems: 'center',
-    height: 40,
-    width: 200,
+    height: 70,
+    width: 250,
   },
   cont1: {
     fontFamily: 'sans-serif',

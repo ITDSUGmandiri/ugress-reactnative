@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react'
-import { StyleSheet, Text, View, Image, Alert } from 'react-native'
+import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Logo from '../../Img/logofeat.png';
+import Logo from '../../Img/sp_masiin.png';
 import { Bg_, Cl1_, Bg1_ } from '../style/Style_assets';
 import { PermissionsAndroid, BackHandler } from 'react-native';
 const lebar = '100%';
 
 const Splash_screen = ({ navigation }) => {
-
   useEffect(() => {
     setTimeout(() => {
       lok();
-    }, 1000);
+    }, 2000);
   }, []);
 
   const ascdata = async () => {
@@ -66,7 +65,7 @@ const Splash_screen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.logo}>
-        <Image source={Logo} style={{ width: 300, height: 300 }}></Image>
+        <Image source={Logo} style={styles.image}></Image>
       </View>
     </View>
   )
@@ -75,6 +74,8 @@ const Splash_screen = ({ navigation }) => {
 
 export default Splash_screen
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 const styles = StyleSheet.create({
 
   container: {
@@ -88,13 +89,15 @@ const styles = StyleSheet.create({
     fontFamily: "sans-serif"
   },
   logo: {
-    backgroundColor: Bg_,
-    color: Bg1_,
-    justifyContent: "center",
-    alignItems: "center",
-    //borderRadius:50,
-    width: lebar,
-    height: 310
-  }
+    height: windowHeight,
+    width: windowWidth,
+    borderWidth: 2,
+    borderColor: '#000',
+  },
+  image: {
+    flex: 1,
+    resizeMode: 'cover',
+    width: '100%',
+  },
 
 });

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 13,
-    color: theme.colors.secondary,
+    color: 'white',
     paddingTop: 8,
   },
   error: {

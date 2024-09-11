@@ -218,7 +218,7 @@ const List_job = ({ navigation }) => {
         })
       }).then((response) => response.json())
       .then((responseJson) => {
-
+        console.log(responseJson);
         isLoading(false);
 
         if (responseJson.status == '1') {

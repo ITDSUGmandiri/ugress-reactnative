@@ -138,7 +138,6 @@ export default function LoginScreen({ navigation }) {
         </Modal>
       <Logo /> 
       <Header>Selamat datang...</Header>
-      <Text style={{ margin: 5, fontSize: 12, color: 'red', fontWeight: 'normal' }}>{notif}</Text>
       <TextInput
         label="Username"
         value={username.value}
@@ -167,7 +166,7 @@ export default function LoginScreen({ navigation }) {
         Login
       </Button>
       <View style={styles.row}>
-      <Text style={{  fontSize: 12, fontWeight: 'bold', textAlign: 'center' }} >powered by ITBS UG MANDIRI</Text>
+      <Text style={{  top: 45, fontSize: 12, color: 'white', fontStyle: "italic", fontWeight: 'bold', textAlign: 'center' }} >powered by ITBS UG MANDIRI</Text>
           
       </View>
     </Background>
@@ -178,15 +177,14 @@ const styles = StyleSheet.create({
   forgotPassword: {
     width: '100%',
     alignItems: 'flex-end',
-    marginBottom: 24,
+    marginBottom: 14,
   },
   row: {
-    marginTop:50,
     justifyContent: 'flex-end',
   },
   forgot: {
     fontSize: 13,
-    color: theme.colors.secondary,
+    color: 'white',
   },
   link: {
     fontWeight: 'bold',

@@ -5,8 +5,8 @@ import { theme } from '../../assets/helper/theme'
 export default function Background({ children }) {
   return (
     <ImageBackground
-      source={require('../../assets/gambar/bg/cover.jpg')}
-      resizeMode="repeat"
+      source={require('../../Img/bg_masiin.png')}
+      resizeMode="cover"
       style={styles.background}
     >
       <KeyboardAvoidingView style={styles.container} behavior="padding">
