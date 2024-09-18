@@ -194,7 +194,7 @@ const List_job = ({navigation}) => {
         <Text style={styles.itemDate}>{item.create_date}</Text>
         <Text style={{textDecorationLine: 'underline', fontSize:10}}>klik untuk detail</Text>
         </View>
-        <Text style={{backgroundColor: item.status == 1 ? 'green' : 'blue', color:'white', padding:5, fontWeight:'600'}}>{item.stat}</Text>
+        <Text onPress={()=>Pindah_halaman(item)} style={{backgroundColor: item.status == 1 ? 'green' : 'blue', color:'white', padding:5, fontWeight:'600'}}>{item.stat}</Text>
       </View>
           
         </TouchableOpacity>
