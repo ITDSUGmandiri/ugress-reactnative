@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RefreshControl, StyleSheet, ScrollView, Text, View, TouchableOpacity, Modal, Image, FlatList, ActivityIndicator, Alert, Button } from 'react-native'
+import { RefreshControl, StyleSheet, ScrollView, Text, View, TouchableOpacity, Modal, Image, TextInput, ActivityIndicator, Alert, Button } from 'react-native'
 import { List_incident_leader, List_kategory_leader, Leader_assign, token, List_tipe_insiden } from '../style/Link';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import GetLocation from 'react-native-get-location';
@@ -328,50 +328,89 @@ const List_job = ({ navigation }) => {
     Cek(iudstrg, id_tipe_insiden);
   };
 
-  const ExpandableListItem = ({item}) => {
-    const [expanded, setExpanded] = useState(false);
-  
-    const toggleExpand = () => {
-      setExpanded(!expanded);
-    };
-  
+  const All = ({ tiket, last_status, id, problem, blok, no_unit, create_date, detail, nama_lokasi, pic_name1, pic_name2, tanggal, type }) => {
+
     return (
-      <View style={styles.itemContainer}>
-        <TouchableOpacity onPress={toggleExpand} style={styles.itemTouchable}>
-        <View
-        style={[
-          styles.container,
-          {
-            justifyContent: 'space-between',
-            flexDirection: 'row',
-            alignItems:'center'
-          },
-        ]}>
-        <View>
-        <Text style={styles.itemTitle}>No Tiket #{item.tiket}</Text>
-        <Text style={styles.itemDate}>{item.create_date}</Text>
-        <Text style={{textDecorationLine: 'underline', fontSize:10}}>klik untuk detail</Text>
-        </View>
-        <Text onPress={()=>Pindah_halaman(item)} style={{backgroundColor: item.status == 1 ? 'green' : 'blue', color:'white', padding:5, fontWeight:'600'}}>{item.stat}</Text>
-      </View>
+      <View>
+        <View style={styles.Card1}>
           
-        </TouchableOpacity>
-        {expanded && <Text onPress={()=>Pindah_halaman(item)} style={styles.itemContent}>Lokasi : {item.nama_lokasi}{'\n'}Pelapor : {item.pelapor}{'\n'}Masalah : {item.job_detail}</Text>
-        }
+          <FontAwesomeIcon icon={faTicketAlt} style={styles.Imgbox} size={32} />
+
+          <View style={styles.Box}>
+
+            <Text numberOfLines={2}
+              style={{ width: lebar, left: 10, fontSize: 24, color: '#56c0e0', fontWeight: 'bold', marginBottom: 2 }}>{last_status}
+            </Text>
+            <Text numberOfLines={1}
+              style={{ width: lebar, fontSize: 16, color: Cl3_, fontWeight: 'bold', marginBottom: 2 }}>Lokasi : {nama_lokasi}
+            </Text>
+            <Text numberOfLines={1}
+              style={{ width: lebar, fontSize: 16, color: Cl3_, fontWeight: 'bold', marginBottom: 2 }}>Unit : {blok}. {no_unit}
+            </Text>
+            <Text numberOfLines={1}
+              style={{ width: lebar, fontSize: 16, color: Cl3_, fontWeight: 'bold', marginBottom: 2 }}>No Tiket : {tiket}
+            </Text>
+            <Text numberOfLines={1}
+              style={{ width: lebar, fontSize: 16, color: Cl3_, fontWeight: 'bold', marginBottom: 2 }}>Tipe Insiden : {type}
+            </Text>
+            <Text numberOfLines={4}
+              style={{ width: lebar, fontSize: 16, color: Cl3_, fontWeight: 'bold', marginBottom: 2 }}>Laporan : {problem}
+            </Text>
+            <Text numberOfLines={1}
+              style={{ width: lebar, fontSize: 16, color: Cl3_, fontWeight: 'bold', marginBottom: 2 }}>Create Date : {create_date}
+            </Text>
+            <Text numberOfLines={1}
+              style={{ width: lebar, fontSize: 16, color: Cl3_, fontWeight: 'bold', marginBottom: 2 }}>Schedule : {tanggal}
+            </Text>
+            <Text numberOfLines={1}
+              style={{ width: lebar, fontSize: 16, color: Cl3_, fontWeight: 'bold', marginBottom: 2 }}>Petugas 1 : {pic_name1}
+            </Text>
+            <Text numberOfLines={1}
+              style={{ width: lebar, fontSize: 16, color: Cl3_, fontWeight: 'bold', marginBottom: 65 }}>Petugas 2 : {pic_name2}
+            </Text>
+
+            <View style={styles.Card3}>
+
+              <TouchableOpacity style={{
+                backgroundColor: Bg1_, flex: 1,
+                flexDirection: 'row',
+                height: 50,
+                alignItems: 'center',
+                justifyContent: 'center', width: '50%', elevation: 8, borderBottomLeftRadius: 15,
+              }}
+
+              onPress={() => datamodal(id)}
+              >
+                
+                <Text style={{
+                  color: '#FFFFFF',
+                  fontWeight: '600',
+                  fontSize: 18
+                }}>Assign</Text>
+
+              </TouchableOpacity>
+
+              <TouchableOpacity style={{
+                backgroundColor: Gr_, flex: 1,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center', width: '50%', height: 50, elevation: 8, borderBottomRightRadius: 15,
+              }} onPress={detail} >
+                <Text style={{
+                  color: '#FFFFFF',
+                  fontWeight: '600',
+                  fontSize: 18
+                }}
+                  onPress={detail}>Detail</Text>
+              </TouchableOpacity>
+
+            </View>
+          </View>
+
+        </View>
       </View>
-    );
-  };
-  
-  const ExpandableList = ({data}) => {
-    const renderItem = ({item}) => <ExpandableListItem item={item} />;
-  
-    return (
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={item => item.id.toString()}
-      />
-    );
+    )
+
   };
 
   return (
@@ -464,7 +503,7 @@ const List_job = ({ navigation }) => {
         onValueChange={filterInsiden}
         >       
 
-            <Picker.Item label="Semua Insiden" value="" />
+            <Picker.Item label="Tipe Insiden" value="" />
     
             {
               Array.isArray(data_tipe_insiden)?data_tipe_insiden.map((val, index) => (
@@ -504,15 +543,28 @@ const List_job = ({ navigation }) => {
         {
         Array.isArray(data)
           ? data.map((us, index) => {
-            return <View style={styles.container}>
-            <ExpandableList data={data} />
-          </View>
+            return <All
+              key={index}
+              tiket={us.tiket}
+              last_status={us.stat}
+              id={us.id}
+              problem={us.job_detail}
+              create_date={us.create_date}
+              blok={us.blok}
+              no_unit={us.no_unit}
+              nama_lokasi={us.nama_lokasi}
+              tanggal={us.tanggal}
+              pic_name1={us.pic_name1}
+              pic_name2={us.pic_name2}
+              type={us.type}
+              detail={() => Pindah_halaman(us)}
+            />
           }) : null
         }
 
         <View style={{ margin: 10 }}>
           <Text numberOfLines={2}
-            style={{ textAlign:'center', width: lebar, fontSize: 12, color: Cl2_, marginBottom: 2 }}>
+            style={{ width: lebar, fontSize: 12, color: Cl2_, marginBottom: 2 }}>
             {notif}
           </Text>
         </View>
@@ -682,51 +734,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
-  },
-  //new listview css
-  container: {
-    flex: 1,
-    backgroundColor: '#f5f5f5',
-    padding: 10,
-  },
-  header: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    color: 'green',
-    textAlign: 'center',
-  },
-  subheader: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  itemContainer: {
-    marginBottom: 15,
-    padding: 10,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    elevation: 3,
-  },
-  itemTouchable: {
-    borderRadius: 10,
-    overflow: 'hidden',
-  },
-  itemTitle: {
-    fontFamily: 'lucida grande',
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: '#333',
-  },
-  itemDate: {
-    fontSize: 12,
-    color: '#333',
-  },
-  itemContent: {
-    marginTop: 5,
-    fontSize: 12,
-    fontWeight: "600",
-    color: '#666',
   },
 });

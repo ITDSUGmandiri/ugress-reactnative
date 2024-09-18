@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { RefreshControl,StyleSheet,ScrollView, Text, View,TouchableOpacity,Modal,Image,TextInput,ActivityIndicator,Alert } from 'react-native'
+import { RefreshControl,StyleSheet,ScrollView, Text, View,TouchableOpacity,Modal,Image,FlatList,ActivityIndicator,Alert } from 'react-native'
 import {List_history_leader,token} from '../style/Link';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import GetLocation from 'react-native-get-location';
@@ -147,42 +147,51 @@ navigation.navigate('Detail_helpdesk',{incident_id:us.id});
 
 };
 
-const All = ({tiket,last_status,id,problem,blok,no_unit,create_date,detail,nama_lokasi,pic_name1,pic_name2}) => {
-return (
-<View>  
-<TouchableOpacity  onPress={detail} style={styles.Card1}>
-  <FontAwesomeIcon icon={ faTicketAlt } style={styles.Imgbox} size={ 32 } />
-  <View style={styles.Box}>
-<Text numberOfLines={2}
-style={{width: lebar,left:10,fontSize:24,color:'#56c0e0',fontWeight:'bold',marginBottom:2}}>{last_status}
-</Text>
-<Text numberOfLines={1}
-style={{width: lebar,fontSize:16,color:Cl3_,fontWeight:'bold',marginBottom:2}}>Area : {nama_lokasi}
-</Text>
-<Text numberOfLines={1}
-style={{width: lebar,fontSize:16,color:Cl3_,fontWeight:'bold',marginBottom:2}}>Unit : {blok}. {no_unit}
-</Text>
-<Text numberOfLines={1}
-style={{width: lebar,fontSize:16,color:Cl3_,fontWeight:'bold',marginBottom:2}}>No Tiket : {tiket} 
-</Text>
-<Text numberOfLines={4}
-style={{width: lebar,fontSize:16,color:Cl3_,fontWeight:'bold',marginBottom:2}}>Laporan : {problem} 
-</Text>
-<Text numberOfLines={1}
-style={{width: lebar,fontSize:16,color:Cl3_,fontWeight:'bold',marginBottom:2}}>Create Date : {create_date} 
-</Text>
-<Text numberOfLines={1}
-style={{width: lebar,fontSize:16,color:Cl3_,fontWeight:'bold',marginBottom:2}}>Petugas 1 : {pic_name1} 
-</Text>
-<Text numberOfLines={1}
-style={{width: lebar,fontSize:16,color:Cl3_,fontWeight:'bold',marginBottom:2}}>Petugas 2 : {pic_name2} 
-</Text>
+const ExpandableListItem = ({item}) => {
+  const [expanded, setExpanded] = useState(false);
 
-</View>
-</TouchableOpacity>
-</View>
+  const toggleExpand = () => {
+    setExpanded(!expanded);
+  };
 
-)};
+  return (
+    <View style={styles.itemContainer}>
+      <TouchableOpacity onPress={toggleExpand} style={styles.itemTouchable}>
+      <View
+      style={[
+        styles.container,
+        {
+          justifyContent: 'space-between',
+          flexDirection: 'row',
+          alignItems:'center'
+        },
+      ]}>
+      <View>
+      <Text style={styles.itemTitle}>No Tiket #{item.tiket}</Text>
+      <Text style={styles.itemDate}>{item.create_date}</Text>
+      <Text style={{textDecorationLine: 'underline', fontSize:10}}>klik untuk detail</Text>
+      </View>
+      <Text onPress={()=>Pindah_halaman(item)} style={{backgroundColor: item.status == 1 ? 'green' : 'blue', color:'white', padding:5, fontWeight:'600'}}>{item.stat}</Text>
+    </View>
+        
+      </TouchableOpacity>
+      {expanded && <Text onPress={()=>Pindah_halaman(item)} style={styles.itemContent}>Lokasi : {item.nama_lokasi}{'\n'}Pelapor : {item.pelapor}{'\n'}Masalah : {item.job_detail}</Text>
+      }
+    </View>
+  );
+};
+
+const ExpandableList = ({data}) => {
+  const renderItem = ({item}) => <ExpandableListItem item={item} />;
+
+  return (
+    <FlatList
+      data={data}
+      renderItem={renderItem}
+      keyExtractor={item => item.id.toString()}
+    />
+  );
+};
 
 return (
 <View  style={styles.Container}> 
@@ -218,24 +227,13 @@ refreshControl={
         >
 {Array.isArray(data)
         ? data.map((us,index) => {
-return <All 
-key={index}
-tiket={us.tiket} 
-last_status={us.stat} 
-id={us.id} 
-problem={us.job_detail} 
-create_date={us.create_date} 
-blok={us.blok} 
-no_unit={us.no_unit} 
-nama_lokasi={us.nama_lokasi} 
-pic_name1={us.pic_name1}
-pic_name2={us.pic_name2}
-detail={() => Pindah_halaman(us)}
-/>
+return  <View style={styles.container}>
+<ExpandableList data={data} />
+</View>
 }) : null}
 <View style={{ margin: 10}}>
 <Text numberOfLines={2}
-style={{width: lebar,fontSize:12,color:Cl2_,marginBottom:2}}> 
+style={{textAlign:"center", width: lebar,fontSize:12,color:Cl2_,marginBottom:2}}> 
 {notif}
 </Text>
 </View>
@@ -357,5 +355,52 @@ const styles = StyleSheet.create({
      top:25, 
      right:0
     
-    }
+    },
+
+    //new listview
+    container: {
+      flex: 1,
+      backgroundColor: '#f5f5f5',
+      padding: 10,
+    },
+    header: {
+      fontSize: 30,
+      fontWeight: 'bold',
+      marginBottom: 20,
+      color: 'green',
+      textAlign: 'center',
+    },
+    subheader: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginBottom: 20,
+      textAlign: 'center',
+    },
+    itemContainer: {
+      marginBottom: 15,
+      padding: 10,
+      backgroundColor: 'white',
+      borderRadius: 10,
+      elevation: 3,
+    },
+    itemTouchable: {
+      borderRadius: 10,
+      overflow: 'hidden',
+    },
+    itemTitle: {
+      fontFamily: 'lucida grande',
+      fontSize: 14,
+      fontWeight: 'bold',
+      color: '#333',
+    },
+    itemDate: {
+      fontSize: 12,
+      color: '#333',
+    },
+    itemContent: {
+      marginTop: 5,
+      fontSize: 12,
+      fontWeight: "600",
+      color: '#666',
+    },
   });

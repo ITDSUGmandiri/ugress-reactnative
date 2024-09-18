@@ -236,7 +236,7 @@ function App() {
 
         <Stack.Screen name="Leader_list_incident" component={Leader_list_incident} options={{
           headerShown: true,
-          title: "List incident leader"
+          title: "Data Laporan Insiden"
         }} />
 
         <Stack.Screen name="Leader_history_incident" component={Leader_history_incident} options={{
@@ -251,7 +251,7 @@ function App() {
 
         <Stack.Screen name="Leader_pending_incident" component={Leader_pending_incident} options={{
           headerShown: true,
-          title: "Pending incident leader"
+          title: "Data Insiden Pending"
         }} />
 
         <Stack.Screen name="AddNewTicket" component={AddNewTicket} options={{

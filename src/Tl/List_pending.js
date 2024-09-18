@@ -91,7 +91,8 @@ fetch(List_incident_leader_pending,
             })
            }).then((response) => response.json())
            .then((responseJson) =>
-           {isLoading(false); 
+           
+           { console.log(responseJson),isLoading(false); 
           if(responseJson.status == '1')
           {
           isLoading(false); 
@@ -456,7 +457,7 @@ detail={() => Pindah_halaman(us)}
 }) : null}
 <View style={{ margin: 10}}>
 <Text numberOfLines={2}
-style={{width: lebar,fontSize:12,color:Cl2_,marginBottom:2}}> 
+style={{textAlign:"center", width: lebar,fontSize:12,color:Cl2_,marginBottom:2}}> 
 {notif}
 </Text>
 </View>

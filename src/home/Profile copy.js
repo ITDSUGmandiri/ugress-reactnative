@@ -8,9 +8,9 @@ import {
   TouchableOpacity,
   Modal,
   Image,
+  TextInput,
   ActivityIndicator,
   Alert,
-  Pressable,
 } from 'react-native';
 import {
   Cek_profile,
@@ -25,23 +25,14 @@ import ImagePicker from 'react-native-image-crop-picker';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faGear} from '@fortawesome/free-solid-svg-icons/faGear';
 import {faSignature} from '@fortawesome/free-solid-svg-icons/faSignature';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-
-
-import TextInput from '../Component/TextInput';
-
-import {theme} from '../../assets/helper/theme';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {width} from '@fortawesome/free-solid-svg-icons/faTicketAlt';
 
 const lebar = '100%';
 const lebar_tombol = '80%';
 const Profile = ({navigation}) => {
   const itbs = token;
   const [user, setUid] = useState('');
-  const [loading, isLoading] = useState(false);
+  const [loading, isLoading] = useState(true);
   const [nip, setnip] = useState('');
-  const [jabatan, setjabatan] = useState('');
   const [username, setusername] = useState('');
   const [email, setemail] = useState('');
   const [reg, setreg] = useState('');
@@ -87,10 +78,8 @@ const Profile = ({navigation}) => {
       .then(response => response.json())
       .then(responseJson => {
         if (responseJson.status == '1') {
-          console.log(responseJson);
           isLoading(false);
           setnip(responseJson.nip);
-          setjabatan(responseJson.jabatan);
           setemail(responseJson.email);
           setusername(responseJson.username);
           settelp(responseJson.telp);
@@ -259,7 +248,7 @@ else {
         </View>
       </Modal>
 
-      {/* <Modal animationType="none" visible={vinput}>
+      <Modal animationType="none" visible={vinput}>
         <View style={{padding: 10, paddingVertical: 30}}>
           <Text style={{fontFamily: 'sans-serif', margin: 1, fontSize: 20}}>
             Password lama
@@ -305,97 +294,70 @@ else {
             <Text style={styles.buttonText}>Reset</Text>
           </TouchableOpacity>
         </View>
-      </Modal> */}
-
-      <View style={styles.header}>
-        <View style={styles.headerContent}>
-          <View style={{flex: 1}}>
-            <Text style={styles.name}>Selamat Datang</Text>
-            <Text style={styles.userInfo}>
-              {username} / {jabatan}
-            </Text>
-            <Text style={{fontSize: 14, color: 'white'}}>{email}</Text>
-          </View>
-          <View>
-            <Image style={styles.avatar} source={require('../../Img/qr.png')} />
-          </View>
-        </View>
-      </View>
-
+      </Modal>
       <ScrollView
         contentContainerStyle={styles.scrollView}
         refreshControl={
           <RefreshControl refreshing={loading} onRefresh={ascdata} />
         }>
         <View style={styles.Card1}>
-          <Text>
-            Halaman Profil Sedang Dalam Perbaikan{' '}
-            <FontAwesomeIcon icon={faExclamationTriangle} size={20} />
+          {/*
+<View style={styles.Card}>  
+
+<TouchableOpacity onPress={Ambilfoto}>
+<View style={{backgroundColor:Bg_,width:150,height:200,alignItems:'center',justifyContent:'center' ,margin:20}} 
+activeOpacity={0.5}>
+<Image source={{uri : imageSource}} 
+style={{width:150,height:200,borderWidth:2,borderColor:'#5DCAED',resizeMode:'contain'}}/>
+</View>
+</TouchableOpacity>
+<TouchableOpacity style={styles.button} 
+ onPress={() => Submit()}
+activeOpacity={0.6}>
+<Text style={styles.buttonText}>Save Picture</Text>
+</TouchableOpacity> 
+</View>
+*/}
+
+          <Text style={styles.label}>NIP :</Text>
+          <Text style={{fontSize: 16, color: 'green', fontWeight: 'normal'}}>
+            {nip}
           </Text>
-          
-          {/* <TextInput
-              label="NIP"
-              value={nip}
-              onChangeText={text => setUser({value: text, error: ''})}
-              autoCapitalize="none"
-              autoCompleteType="username"
-            />
-            
-            <TextInput
-              label="USERNAME"
-              value={username}
-              // onChangeText={text => setPass({value: text, error: ''})}
-            />
+          <Text style={styles.label}>Username :</Text>
+          <Text style={{fontSize: 16, color: 'green', fontWeight: 'normal'}}>
+            {username}
+          </Text>
+          <Text style={styles.label}>Email :</Text>
+          <Text style={{fontSize: 16, color: 'green', fontWeight: 'normal'}}>
+            {email}
+          </Text>
+          <Text style={styles.label}>Telp :</Text>
+          <Text style={{fontSize: 16, color: 'green', fontWeight: 'normal'}}>
+            {telp}
+          </Text>
+          <Text style={styles.label}>Regional :</Text>
+          <Text style={{fontSize: 16, color: 'green', fontWeight: 'normal'}}>
+            {reg}
+          </Text>
+          <View style={styles.Box_}>
+            <TouchableOpacity style={styles.Box} onPress={() => gantipass()}>
+              <FontAwesomeIcon icon={faGear} style={styles.Imgbox} size={32} />
+            </TouchableOpacity>
+            <Text style={styles.Judulbox}>Ganti Password</Text>
+          </View>
 
-            <TextInput
-              label="E-mail"
-              value={email}
-              // onChangeText={text => setPass({value: text, error: ''})}
-            />
-
-            <TextInput
-              label="Telepone"
-              value={telp}
-              // onChangeText={text => setPass({value: text, error: ''})}
-            />
-
-            <TextInput
-              label="Regional"
-              value={reg}
-              // onChangeText={text => setPass({value: text, error: ''})}
-            />
-
-
-           
-          
-            <View style={styles.BoxPass}>
-            <TextInput
-              label="Password"
-              value={reg}
-              style={{width:165}}
-              // onChangeText={text => setPass({value: text, error: ''})}
-            />
-              <TouchableOpacity onPress={() => gantipass()}>
-                <FontAwesomeIcon
-                  icon={faGear}
-                  style={styles.Imgbox}
-                  size={32}
-                />
-              </TouchableOpacity>
-            </View>
-
-            <View style={styles.Box_}>
-              <TouchableOpacity
-                style={styles.Box}
-                onPress={() => navigation.navigate('User_signature')}>
-                <FontAwesomeIcon
-                  icon={faSignature}
-                  style={styles.Imgbox}
-                  size={32}
-                />
-              </TouchableOpacity>
-              <Text style={styles.Judulbox}>Tambah Signature</Text>
-            </View> */}
+          <View style={styles.Box_}>
+            <TouchableOpacity
+              style={styles.Box}
+              onPress={() => navigation.navigate('User_signature')}>
+              <FontAwesomeIcon
+                icon={faSignature}
+                style={styles.Imgbox}
+                size={32}
+              />
+            </TouchableOpacity>
+            <Text style={styles.Judulbox}>Tambah Signature</Text>
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -405,20 +367,6 @@ else {
 export default Profile;
 
 const styles = StyleSheet.create({
-  input: {
-    height: 50,
-    backgroundColor: theme.colors.surface,
-  },
-  description: {
-    fontSize: 13,
-    color: theme.colors.surface,
-    paddingTop: 8,
-  },
-  error: {
-    fontSize: 13,
-    color: theme.colors.error,
-    paddingTop: 8,
-  },
   Container: {
     fontFamily: 'sans-serif',
     backgroundColor: Bg_,
@@ -441,14 +389,15 @@ const styles = StyleSheet.create({
     fontFamily: 'sans-serif',
     justifyContent: 'center',
     //alignItems:"center",
-    // flex: 1,
-    margin: 10,
-    backgroundColor: 'white',
+    backgroundColor: Bg_,
+    flex: 1,
     paddingVertical: 15,
     elevation: 5,
     flexDirection: 'column',
     padding: 10,
     color: 'grey',
+    margin: 10,
+    marginBottom: 5,
     borderRadius: 15,
   },
   button: {
@@ -466,11 +415,6 @@ const styles = StyleSheet.create({
     color: Cl_,
     textAlign: 'center',
   },
-  BoxPass: {
-    flex: 1,
-    right: 0,
-    flexDirection: 'row',
-  },
   Box_: {
     backgroundColor: Bg_,
     width: 55,
@@ -484,15 +428,21 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   Box: {
+    flex: 0,
     backgroundColor: '#ffffff',
+    width: 60,
     height: 60,
     borderRadius: 15,
+    alignItems: 'center',
+    elevation: 5,
+    marginRight: 10,
+    marginLeft: 10,
     color: Cl1_,
   },
   Imgbox: {
     backgroundColor: 'transparent',
     resizeMode: 'cover',
-
+    width: 30,
     height: 30,
     justifyContent: 'center',
     top: 15,
@@ -551,86 +501,5 @@ const styles = StyleSheet.create({
     color: 'grey',
     marginTop: 10,
     paddingHorizontal: 10,
-  },
-  // new design
-
-  header: {
-    backgroundColor: '#000060',
-    backgroundSize: 'contain',
-    height: 150,
-  },
-
-  headerContent: {
-    padding: 30,
-    alignItems: 'center',
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  avatar: {
-    width: 100,
-    height: 100,
-    color: Colors.white,
-    borderRadius: 63,
-    borderWidth: 2,
-    borderColor: 'white',
-    marginBottom: 10,
-    // float: "right"
-  },
-
-  name: {
-    fontSize: 22,
-    color: 'white',
-    // fontWeight: "600",
-    fontFamily: 'Helvetica',
-  },
-  headtText: {
-    fontFamily: 'Helvetica',
-    color: 'grey',
-    // fontWeight: "600",
-    // float: "left",
-    marginLeft: 20,
-    marginTop: 10,
-  },
-  SubjectText: {
-    color: 'white',
-    // fontWeight: "550",
-    fontSize: 16,
-    fontFamily: 'Helvetica',
-    // float: "left",
-    marginLeft: 20,
-    marginTop: 10,
-  },
-  userInfo: {
-    fontSize: 16,
-    color: 'white',
-    // fontWeight: "600"
-  },
-  btn: {
-    marginTop: 20,
-    backgroundColor: '#3B525F',
-    borderRadius: 10,
-    width: 200,
-    height: 50,
-    alignItems: 'center',
-    padding: '6px',
-    elevation: 3,
-  },
-
-  text: {
-    color: 'white',
-    margin: 10,
-  },
-  RectangleShapeView: {
-    marginTop: 20,
-    // width: '80%',
-    height: 80,
-    backgroundColor: 'white',
-    color: 'black',
-    borderRadius: 10,
-    borderColor: 'black',
-    borderWidth: 1,
-    elevation: 3,
   },
 });
